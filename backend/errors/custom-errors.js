@@ -1,0 +1,34 @@
+class customErrors extends Error{
+    constructor(message){
+        super(message)
+    }
+}
+
+class NotFoundError extends customErrors{
+    constructor(message){
+        super(message)
+        this.statusCode = 404 ;
+    }
+}
+
+class BadRequestError extends customErrors{
+    constructor(message){
+        super(message)
+        this.statusCode = 400 ;
+    }
+}
+
+class UnAuthorizedError extends customErrors{
+    constructor(message){
+        super(message)
+        this.statusCode = 401 ;
+    }
+}
+
+module.exports = {
+    customErrors,
+    NotFoundError,
+    BadRequestError,
+    UnAuthorizedError
+}
+
