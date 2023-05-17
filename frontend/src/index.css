@@ -1,4 +1,25 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
+}
+:root{
+    --text-color: #042f2e;
+    --bg-white: #f0fdfa;
+    --bg-input:#ccfbf1;
+}
+
+body{
+    background-color: var(--bg-white);
+    scroll-behavior: smooth;
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+
+a{
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
 }

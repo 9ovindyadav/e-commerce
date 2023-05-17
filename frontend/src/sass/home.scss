@@ -1,0 +1,64 @@
+
+
+section{
+    .home-top{
+        background: url("../assets/images/intro.jpg") no-repeat;
+        background-size: cover;
+        min-height: 90vh;
+        background-origin: content-box;
+
+        .text{
+            padding: 5em 10em;
+
+            h1{
+                font-size: 3em;
+                width: 50%;
+                color: var(--text-color);
+                margin: 1em 0;
+            }
+            p{
+                width: 50%;
+                color: var(--text-color);
+            }
+            button{
+                padding: 1em 3em;
+                border-radius: 2em;
+                border: none;
+                background-color: var(--text-color);
+                color: white;
+                cursor: pointer;
+                margin-top: 3em;
+
+               
+            }
+            button:active{
+                transform: scale(0.9);
+            }
+        }
+    }
+}
+
+.category{
+    padding: 4em 5em;
+
+    .roller{
+        display: flex;
+        margin: 2em 0;
+        overflow: scroll;
+        white-space: nowrap;
+        scroll-behavior: smooth;
+    
+        a{
+            margin: 0 1em;
+            background-color: var(--bg-input);
+            padding: 0.2em 1em;
+            border-radius: 1em;
+        }
+        a:active{
+            transform: scale(0.9);
+        }
+        }
+    .roller::-webkit-scrollbar{
+        display: none;
+    }
+}
