@@ -38,7 +38,7 @@ section{
     }
 }
 
-.category{
+.home-section{
     padding: 4em 5em;
 
     .roller{
@@ -61,4 +61,51 @@ section{
     .roller::-webkit-scrollbar{
         display: none;
     }
+}
+
+.product-card{
+    width: 18em;
+    margin: 0 1em;
+    a{
+        flex-direction: column;
+
+        .img{
+            height: 300px;
+            background-color: red;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .title{
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            margin: 0.5em 0;
+            h2{
+                font-size: 1.1em;
+            }
+        }
+        p{
+            text-align: start;
+            width: 90%;
+            margin: 5px 0;
+        }
+       
+    }
+    a:active{
+        transform: none;
+    }
+}
+
+.btn-transparent{
+    padding: 0.5em 2em;
+    border-radius: 2em;
+    background: transparent;
+    margin: 1em ;
+    cursor: pointer;
+}
+.btn-transparent:active{
+    transform: scale(0.9);
 }
