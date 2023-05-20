@@ -65,7 +65,8 @@ section{
 
 .product-card{
     width: 18em;
-    margin: 0 1em;
+    margin: 1em;
+    background-color: white;
     a{
         flex-direction: column;
 
@@ -105,6 +106,7 @@ section{
     background: transparent;
     margin: 1em ;
     cursor: pointer;
+    border: 1px solid black;
 }
 .btn-transparent:active{
     transform: scale(0.9);

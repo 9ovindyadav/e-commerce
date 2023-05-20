@@ -86,3 +86,24 @@ footer{
     }
 }
 
+.modal{
+    
+    position: relative;
+
+    .modal-body{
+        position: absolute;
+        background-color: white;
+        width: 120%;
+        margin: 1em 0;
+        padding: 1em;
+        border-radius: 1em;
+
+        a{
+            color: var(--text-color);
+            margin: 1em 0;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+}

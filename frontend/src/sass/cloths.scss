@@ -1,0 +1,20 @@
+.cloths{
+    display: flex;
+    align-items: start;
+    margin: 2em 0;
+}
+
+.filter-bar{
+    width: 20%;
+    position: sticky;
+    height: 80vh;
+    top: 7em;
+    background-color: pink;
+    
+}
+
+.product-col{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+}
