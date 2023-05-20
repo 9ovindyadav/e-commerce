@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const user = {
-  id:"4726943865"
+  // id:"4726943865"
 };
 export const Navbar = () => {
 
@@ -14,6 +14,9 @@ export const Navbar = () => {
 
   const clickHandler = () =>{
     setShow(true);
+    if(show){
+      setShow(false);
+    }
   }
 
   return (

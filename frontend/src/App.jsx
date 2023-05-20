@@ -5,6 +5,7 @@ import { Footer } from "./Layout/Footer"
 import { Cloths } from "./Pages/Cloths"
 import { Product } from "./Pages/Product-details"
 import { Login } from "./Pages/Login"
+import { Register } from "./Pages/Register"
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/cloths" element={<Cloths/>}/>
           <Route path="/product/:id" element={<Product/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={<Register/>}/>
         </Routes>
         <Footer/>
    </BrowserRouter>
