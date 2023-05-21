@@ -6,6 +6,7 @@ import { Cloths } from "./Pages/Cloths"
 import { Product } from "./Pages/Product-details"
 import { Login } from "./Pages/Login"
 import { Register } from "./Pages/Register"
+import { Toaster } from "react-hot-toast"
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/register" element={<Register/>}/>
         </Routes>
         <Footer/>
+        <Toaster/>
    </BrowserRouter>
   )
 }

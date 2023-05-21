@@ -6,17 +6,25 @@ const app = express();
 
 require("dotenv").config();
 require("express-async-errors");
+const cors = require("cors");
 
 //middlewares
+app.use(cors());
 app.use(express.json());
-
-app.use(notFound);
-app.use(errorHandlerMiddleware);
 
 
 app.get("/",(req,res)=>{
     res.status(200).send("<h1>Server is Live</h1>")
 })
+
+//routes
+const userRoute = require("./routes/user");
+
+app.use("/api/v1/user",userRoute);
+
+app.use(notFound);
+app.use(errorHandlerMiddleware);
+
 
 const port = process.env.PORT || 3000 ;
 
