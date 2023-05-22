@@ -9,7 +9,9 @@ require("express-async-errors");
 const cors = require("cors");
 
 //middlewares
-app.use(cors());
+app.use(cors({
+
+}));
 app.use(express.json());
 
 

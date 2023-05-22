@@ -3,8 +3,10 @@ const {BadRequestError, UnAuthorizedError} = require("../errors/custom-errors");
 
 const userRegister = async (req,res,next) => {
     const user = await User.create({...req.body});
+    const token = user.createJWT() ;
      res.status(200).json({
-       message: `Welcome ${user.name}` 
+       message: `Welcome ${user.name}`,
+       token
      })
 }
 
@@ -25,8 +27,11 @@ const userLogin = async (req,res,next) => {
     if(!isCorrectPassword){
         throw new UnAuthorizedError("Invalid credentials")
     }
+
+    const token = user.createJWT() ;
     res.status(200).json({
-        message: `Welcome back ${user.name}`
+        message: `Welcome back ${user.name}`,
+        token
       })
 }
 
