@@ -8,6 +8,8 @@ import { Login } from "./Pages/Login"
 import { Register } from "./Pages/Register"
 import { Toaster } from "react-hot-toast"
 import { Profile } from "./Pages/Profile"
+import { ForgotPassword } from "./Pages/User/ForgotPassword"
+import { ResetPassword } from "./Pages/User/ResetPassword"
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
           <Route path="/product/:id" element={<Product/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
+          <Route path="/forget-password" element={<ForgotPassword/>}/>
+          <Route path="/reset-password/:token" element={<ResetPassword/>}/>
           <Route path="/profile" element={<Profile/>}/>
         </Routes>
         <Footer/>
