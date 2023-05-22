@@ -2,6 +2,7 @@ import Logo from "../../src/assets/images/logo.png"
 import "../sass/layout.scss";
 import {BsChevronDown, BsPersonFill, BsCart3} from "react-icons/bs"
 import {BiSearch, BiLogIn} from "react-icons/bi";
+import {FiMenu} from "react-icons/fi"
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -45,6 +46,7 @@ export const Navbar = () => {
         </div> : <Link to={"/login"}><BiLogIn/> Login</Link>
       }
       <Link to="/cart"><BsCart3/> Cart</Link>
+      <FiMenu className="mobile-menu"/>
     </nav>
   )
 }

@@ -1,6 +1,6 @@
-import { ProductCard } from "../Components/Product-card"
-import {products} from "../../products.jsx"
-import "../sass/cloths.scss"
+import { ProductCard } from "./Product-card"
+import {products} from "../../../products.jsx"
+import "../../sass/cloths.scss"
 
 export const Cloths = () => {
   return (

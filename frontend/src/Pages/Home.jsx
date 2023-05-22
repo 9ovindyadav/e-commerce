@@ -1,9 +1,21 @@
 import { Link } from "react-router-dom"
 import "../sass/home.scss"
-import { ProductCard } from "../Components/Product-card"
+import { ProductCard } from "./Products/Product-card"
 import {products} from "../../products.jsx"
 
 const category = [
+{
+  title:"Sport's wear",
+  path: "/sale"
+},
+{
+  title:"Sport's wear",
+  path: "/sale"
+},
+{
+  title:"Sport's wear",
+  path: "/sale"
+},
 {
   title:"Sport's wear",
   path: "/sale"

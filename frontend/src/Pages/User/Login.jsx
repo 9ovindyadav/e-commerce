@@ -1,9 +1,9 @@
 import { Link, Navigate, useNavigate } from "react-router-dom"
-import "../sass/login.scss"
+import "../../sass/login.scss"
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { setCookie } from "../utils/cookie";
+import { setCookie } from "../../utils/cookie";
 
 
 export const Login = () => {
