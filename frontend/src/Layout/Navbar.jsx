@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 
 const user = {
-  // id:"4726943865"
+  id:"4726943865"
 };
 export const Navbar = () => {
 
@@ -82,26 +82,34 @@ const pannelDisplayHandler2 = ()=>{
       <div ref={mySidenav} class="sidenav">
             <span href="javascript:void(0)" class="closebtn" onClick={closeMenu}><AiOutlineClose/></span>
             <div className="nav1">
-            <a href="#" onClick={pannelDisplayHandler1}>Features <BsChevronDown/></a>
+            <Link to={"/"} onClick={closeMenu}>Home</Link>
+            <a href="#" onClick={pannelDisplayHandler1}>Category<BsChevronDown/></a>
             <div ref={pannelDisplay1} className="panel">
                 <a href="#">Todo List</a>
                 <a href="#">Calender</a>
                 <a href="#">Reminder</a>
                 <a href="#">Planning</a>
             </div>
-            <a href="#" onClick={pannelDisplayHandler2}>Company </a>
+           
+            <Link to={"/cloths"} onClick={closeMenu}>Men's</Link>
+            <Link to={"/cloths"} onClick={closeMenu}>Women's</Link>
+            <Link to={"/sale"} onClick={closeMenu}>Sale</Link>
+            </div>
+            {
+              user.id ? <>
+               <a href="#" onClick={pannelDisplayHandler2}>Account<BsChevronDown/></a>
             <div ref={pannelDisplay2} className="panel">
-                <a href="#">History</a>
-                <a href="#">Our team</a>
-                <a href="#">Blog</a>
+                <Link to={"/profile"}>Profile</Link>
+                <Link to={"/profile"}>Orders</Link>
+                <Link to={"/profile"}>Settings</Link>
             </div>
-            <a href="#">Carears</a>
-            <a href="#">About</a>
-            </div>
-            <div className="nav2">
-            <a href="#">Login</a>
-            <a href="#">Register</a>
-             </div>
+            <Link onClick={closeMenu}>Cart <BsCart3/></Link>
+            <Link onClick={closeMenu}>Log out</Link>
+               </> : <div className="nav2">
+              <Link to={"/login"} onClick={closeMenu}>Login</Link>
+              <Link to={"/register"} onClick={closeMenu}>Register</Link>
+               </div>
+            }
        </div>
     </nav>
   )
