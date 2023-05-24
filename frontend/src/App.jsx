@@ -52,7 +52,9 @@ function App() {
                                           </ProtectedRoute>}/>
           <Route path="/forget-password" element={<ForgotPassword/>}/>
           <Route path="/reset-password/:token" element={<ResetPassword/>}/>
-          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/profile" element={<ProtectedRoute isAuthenticated={isAuthenticated}>
+                                            <Profile/>
+                                          </ProtectedRoute>}/>
         </Routes>
         <Footer/>
         <Toaster/>

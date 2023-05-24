@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { logOut } from "../Redux/Actions/userActions";
+import { setCookie } from "../utils/cookie";
 
 
 export const Navbar = ({isAuthenticated = false, user}) => {
@@ -51,10 +52,12 @@ const pannelDisplayHandler2 = ()=>{
 }
 
 const dispatch = useDispatch();
+
 const logOutHandler = () => {
   dispatch(logOut());
   closeMenu();
   setShow(false);
+  setCookie("remove","");
 }
 
   return (

@@ -1,28 +1,16 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { forgotPassword } from "../../Redux/Actions/userActions";
 
 export const ForgotPassword = () => {
 
     const [email,setEmail] = useState("");
 
+    const dispatch = useDispatch();
     const submitHandler = async (e) => {
           e.preventDefault();
-          try {
-            const url = `${import.meta.env.VITE_BACKEND_URL}/user/password/forgot` ;
-          const response = await fetch(url,{
-            method:"POST",
-            headers:{
-                "content-type":"application/json"
-            },
-            body: JSON.stringify({email})
-          })
-
-          const data = await response.json();
-          if(!response.ok) throw new Error(data.msg);
-          toast.success(data.message);
-          } catch (error) {
-            toast.error(error.message);
-          }
+        dispatch(forgotPassword(email));
     }
   return (
     <div className="container">

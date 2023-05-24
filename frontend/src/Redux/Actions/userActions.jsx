@@ -1,3 +1,5 @@
+import { useParams } from "react-router-dom";
+import { setCookie } from "../../utils/cookie";
 import { server } from "../Store";
 
 export const login = (email,password)=> async(dispatch)=>{
@@ -18,6 +20,7 @@ export const login = (email,password)=> async(dispatch)=>{
         const data = await response.json();
         if(data.message){
         dispatch({ type: "loginSuccess", payload: data});
+        setCookie("token",data.token);
         }
         if(data.msg){
           dispatch({ type: "loginFail", payload: data.msg});
@@ -55,51 +58,49 @@ export const register = (name,email,password)=> async(dispatch)=>{
   }
 };
 
-export const forgetPassword = (email,password)=> async(dispatch)=>{
+export const forgotPassword = (email)=> async(dispatch)=>{
 
-  dispatch({type:"loginRequest"});
+  dispatch({type:"forgotPasswordRequest"});
 
-  const url = `${server}/user/login`
-  const response = await fetch(url,{
-    method:"POST",
-    headers:{
-     "content-type":"application/json"
-    },
-    body: JSON.stringify({
-      email,password
-    })
-  })
+  const url = `${server}/user/password/forgot` ;
+          const response = await fetch(url,{
+            method:"POST",
+            headers:{
+                "content-type":"application/json"
+            },
+            body: JSON.stringify({email})
+          })
 
   const data = await response.json();
+
   if(data.message){
-  dispatch({ type: "loginSuccess", payload: data});
+  dispatch({ type: "forgotPasswordSuccess", payload: data.message});
   }
   if(data.msg){
-    dispatch({ type: "loginFail", payload: data.msg});
+    dispatch({ type: "forgotPasswordFail", payload: data.msg});
   }
 };
 
-export const resetPassword = (email,password)=> async(dispatch)=>{
+export const resetPassword = (password,token)=> async(dispatch)=>{
 
-  dispatch({type:"loginRequest"});
+  dispatch({type:"resetPasswordRequest"});
 
-  const url = `${server}/user/login`
-  const response = await fetch(url,{
-    method:"POST",
-    headers:{
-     "content-type":"application/json"
-    },
-    body: JSON.stringify({
-      email,password
-    })
-  })
+  const url = `${server}/user/password/reset/${token}` ;
+          const response = await fetch(url,{
+            method:"PATCH",
+            headers:{
+                "content-type":"application/json"
+            },
+            body: JSON.stringify({password})
+          })
 
-  const data = await response.json();
+          const data = await response.json();
+          console.log(data);
   if(data.message){
-  dispatch({ type: "loginSuccess", payload: data});
+  dispatch({ type: "resetPasswordSuccess", payload: data.message});
   }
   if(data.msg){
-    dispatch({ type: "loginFail", payload: data.msg});
+    dispatch({ type: "resetPasswordFail", payload: data.msg});
   }
 };
 
