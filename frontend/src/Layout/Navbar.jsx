@@ -84,6 +84,9 @@ const logOutHandler = () => {
                   <Link to={"/profile"} onClick={()=>setShow(false)}>Profile</Link>
                   <Link to={"/orders"} onClick={()=>setShow(false)}>Orders</Link>
                   <Link to={"/settings"} onClick={()=>setShow(false)}>Settings</Link>
+                  {
+                    user.role === "admin" ? <Link to={"/admin/dashboard"} onClick={()=>setShow(false)}>Dashboard</Link> : null 
+                  }
                   <Link onClick={logOutHandler}>Log out</Link>
               </div> : null 
                 }

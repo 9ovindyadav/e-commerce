@@ -13,6 +13,8 @@ import { ResetPassword } from "./Pages/User/ResetPassword"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {ProtectedRoute} from "protected-route-react"
+import { NewProduct } from "./Pages/Admin/NewProduct"
+import { Dashboard } from "./Pages/Admin/Dashboard"
 
 function App() {
 
@@ -55,6 +57,9 @@ function App() {
           <Route path="/profile" element={<ProtectedRoute isAuthenticated={isAuthenticated}>
                                             <Profile/>
                                           </ProtectedRoute>}/>
+
+          <Route path="/admin/dashboard" element={<Dashboard/>}/>                                
+          <Route path="/admin/product/create" element={<NewProduct/>}/>
         </Routes>
         <Footer/>
         <Toaster/>

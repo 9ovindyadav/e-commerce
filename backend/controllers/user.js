@@ -30,10 +30,12 @@ const userLogin = async (req,res) => {
         throw new UnAuthorizedError("Invalid credentials")
     }
 
+    user.password = null ;
     const token = user.createJWT() ;
     res.status(200).json({
         message: `Welcome back ${user.name}`,
-        token
+        token,
+        user
       })
 }
 
