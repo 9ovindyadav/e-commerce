@@ -1,38 +1,21 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import "../../sass/login.scss"
 import { useState } from "react"
-import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { register } from "../../Redux/Actions/userActions";
+
 
 
 export const Register = () => {
-  const navigate = useNavigate();
 
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
+    const dispatch = useDispatch();
     const submitHandler = async (e) => {
         e.preventDefault();
-        
-        try {
-          const url = `${import.meta.env.VITE_BACKEND_URL}/user/register`;
-        const response = await fetch(url,{
-          method:"POST",
-          headers:{
-            "content-type":"application/json"
-          },
-          body: JSON.stringify({
-            name,email,password
-          })
-        });
-
-        const data = await response.json();
-       if(!response.ok) throw new Error(data.msg);
-        toast.success(data.message)
-        navigate("/");
-        } catch (error) {
-          toast.error(error.message);
-        }
+        dispatch(register(name,email,password));
     }
   return (
     <div className="container">

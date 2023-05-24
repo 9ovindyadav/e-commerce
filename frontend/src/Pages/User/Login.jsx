@@ -1,9 +1,8 @@
 import { Link, Navigate, useNavigate } from "react-router-dom"
 import "../../sass/login.scss"
 import { useState } from "react";
-import axios from "axios";
-import { toast } from "react-hot-toast";
-import { setCookie } from "../../utils/cookie";
+import {useDispatch} from "react-redux";
+import {login} from "../../Redux/Actions/userActions";
 
 
 export const Login = () => {
@@ -13,30 +12,10 @@ export const Login = () => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
-    const submitHandler = async (e) => {
+const dispatch = useDispatch();
+    const submitHandler = (e) => {
         e.preventDefault();
-
-        try {
-          const url = `${import.meta.env.VITE_BACKEND_URL}/user/login`
-        const response = await fetch(url,{
-          method:"POST",
-          headers:{
-           "content-type":"application/json"
-          },
-          body: JSON.stringify({
-            email,password
-          })
-        })
-    
-        const data = await response.json();
-        if(!response.ok) throw new Error(data.msg);
-        toast.success(data.message);
-        setCookie("token",data.token);
-        navigate("/");
-        } catch (error) {
-          toast.error(error.message);
-        }
-      
+      dispatch(login(email,password));
     }
   return (
 <div className="container">

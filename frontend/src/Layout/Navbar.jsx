@@ -5,15 +5,14 @@ import {BiSearch, BiLogIn} from "react-icons/bi";
 import {FiMenu} from "react-icons/fi"
 import {AiOutlineClose} from "react-icons/ai"
 import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { logOut } from "../Redux/Actions/userActions";
 
-const user = {
-  id:"4726943865"
-};
-export const Navbar = () => {
+
+export const Navbar = ({isAuthenticated = false, user}) => {
 
   const [show, setShow] = useState(false);
-
   const clickHandler = () =>{
     setShow(true);
     if(show){
@@ -51,6 +50,13 @@ const pannelDisplayHandler2 = ()=>{
       }
 }
 
+const dispatch = useDispatch();
+const logOutHandler = () => {
+  dispatch(logOut());
+  closeMenu();
+  setShow(false);
+}
+
   return (
     <nav>
       <Link to={"/"} className="logo">
@@ -58,7 +64,7 @@ const pannelDisplayHandler2 = ()=>{
         <span>Shopcart</span>
       </Link>
       <ul>
-        <li><Link to="/category">Category</Link> <BsChevronDown/> </li>
+        <li><Link to="/category" onClick={()=>setUser(userData)}>Category</Link> <BsChevronDown/> </li>
         <li><Link to="/cloths">Men's</Link></li>
         <li><Link to="/cloths">Women's</Link></li>
         <li><Link to="/sale">Sale</Link></li>
@@ -67,11 +73,16 @@ const pannelDisplayHandler2 = ()=>{
       <input type="text" placeholder="Search product" /> <BiSearch/>
       </div>
       {
-        user.id ? <div className="modal">
+        isAuthenticated ? <div className="modal">
           <Link onClick={clickHandler}><BsPersonFill/> Account</Link>
                
                 {
-                  show ? <AccountDetails /> : null 
+                  show ? <div className="modal-body">
+                  <Link to={"/profile"} onClick={()=>setShow(false)}>Profile</Link>
+                  <Link to={"/orders"} onClick={()=>setShow(false)}>Orders</Link>
+                  <Link to={"/settings"} onClick={()=>setShow(false)}>Settings</Link>
+                  <Link onClick={logOutHandler}>Log out</Link>
+              </div> : null 
                 }
                
         </div> : <Link to={"/login"}><BiLogIn/> Login</Link>
@@ -96,7 +107,7 @@ const pannelDisplayHandler2 = ()=>{
             <Link to={"/sale"} onClick={closeMenu}>Sale</Link>
             </div>
             {
-              user.id ? <>
+              isAuthenticated ? <>
                <a href="#" onClick={pannelDisplayHandler2}>Account<BsChevronDown/></a>
             <div ref={pannelDisplay2} className="panel">
                 <Link to={"/profile"}>Profile</Link>
@@ -104,7 +115,7 @@ const pannelDisplayHandler2 = ()=>{
                 <Link to={"/profile"}>Settings</Link>
             </div>
             <Link onClick={closeMenu}>Cart <BsCart3/></Link>
-            <Link onClick={closeMenu}>Log out</Link>
+            <Link onClick={logOutHandler}>Log out</Link>
                </> : <div className="nav2">
               <Link to={"/login"} onClick={closeMenu}>Login</Link>
               <Link to={"/register"} onClick={closeMenu}>Register</Link>
@@ -115,15 +126,3 @@ const pannelDisplayHandler2 = ()=>{
   )
 }
 
-
-const AccountDetails = () => {
- 
-  return(
-    <div className="modal-body">
-    <Link to={"/profile"} onClick={()=>setShow(false)}>Profile</Link>
-    <Link to={"/orders"} onClick={()=>setShow(false)}>Orders</Link>
-    <Link to={"/settings"} onClick={()=>setShow(false)}>Settings</Link>
-    <Link onClick={()=>setShow(false)}>Log out</Link>
-</div>
-  )
-}

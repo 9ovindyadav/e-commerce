@@ -83,9 +83,15 @@ await user.save();
     })
 }
 
+const getUser = async (req,res) => {
+    const user = await User.findById(req.user.userID).select("-password");
+    res.status(200).json({user});
+}
+
 module.exports = {
     userRegister,
     userLogin,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    getUser
 }
