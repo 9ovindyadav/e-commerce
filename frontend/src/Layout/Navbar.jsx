@@ -120,6 +120,9 @@ const logOutHandler = () => {
                 <Link to={"/profile"}>Orders</Link>
                 <Link to={"/profile"}>Settings</Link>
             </div>
+            {
+              user.role === "admin" ? <Link to={"/admin/dashboard"} onClick={closeMenu}>Dashboard</Link> : null
+            }
             <Link onClick={closeMenu}>Cart <BsCart3/></Link>
             <Link onClick={logOutHandler}>Log out</Link>
                </> : <div className="nav2">
