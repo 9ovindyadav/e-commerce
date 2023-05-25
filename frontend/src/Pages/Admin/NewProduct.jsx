@@ -28,9 +28,8 @@ export const NewProduct = () => {
 
   const createProductSubmitHandler = (e) => {
      e.preventDefault();
-const myForm = {
-  name,price,description,category,stock,images
-}
+
+     const myForm = {name,price,description,category,stock,images}
     //  const myForm = new FormData();
 
     //  myForm.set("name",name);
@@ -69,13 +68,15 @@ const myForm = {
     <div className="dashboard">
       <div className="content">
        <div className="newProductContainer">
-        <form encType="multipart/form-data" onSubmit={createProductSubmitHandler}>
+        <form enctype="multipart/form-data" onSubmit={createProductSubmitHandler}>
            <h1>Create New Product</h1>
             <div>
              <input 
                type="text" 
                placeholder="Product name" 
-               required value={name} 
+               required 
+               value={name} 
+               name="name"
                onChange={(e)=>setName(e.target.value)}
                />
             </div>

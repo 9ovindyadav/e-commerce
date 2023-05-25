@@ -10,5 +10,11 @@ export const setCookie = (name,value) => {
     const expireDate = new Date();
     expireDate.setDate(expireDate.getDate()+1);
 
-    cookies.set(name,value,{path: "/",expires: expireDate});
+    cookies.set(name,`Bearer ${value}`,{path: "/",expires: expireDate});
+}
+
+export const getCookie = () => {
+    const cookies = new Cookies();
+
+    return cookies.getAll().token ;
 }
