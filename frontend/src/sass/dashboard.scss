@@ -8,9 +8,13 @@
     }
     .sidebar{
    background-color: var(--bg-input);
-   width: 15%;
+   box-sizing: border-box;
+   width: calc(100% - 85%);
    padding: 1em;
-
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.267);
+   position: fixed;
+   right: 0;
+   height: 100%;
    a{
      margin: 0.5em 0; 
      

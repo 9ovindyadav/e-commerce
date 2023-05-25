@@ -2,6 +2,7 @@ const express = require("express");
 const notFound = require("./middlewares/not-found");
 const errorHandlerMiddleware = require("./middlewares/error-handler");
 const connectDB = require("./db/connect");
+const fileUpload = require("express-fileupload");
 const app = express();
 
 require("dotenv").config();
@@ -12,7 +13,9 @@ const cors = require("cors");
 app.use(cors({
 
 }));
-app.use(express.json());
+app.use(express.json({limit:"50mb"}));
+app.use(express.urlencoded({limit:"50mb"}));
+app.use(fileUpload());
 
 
 app.get("/",(req,res)=>{
@@ -21,8 +24,10 @@ app.get("/",(req,res)=>{
 
 //routes
 const userRoute = require("./routes/user");
+const productRoute = require("./routes/product");
 
 app.use("/api/v1/user",userRoute);
+app.use("/api/v1/product",productRoute);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);

@@ -1,5 +1,8 @@
 import { useState } from "react"
-import { Sidebar } from "./Dashboard"
+import { Sidebar } from "./Dashboard";
+import {useDispatch} from "react-redux";
+import "../../sass/NewProduct.scss"
+import { createProduct } from "../../Redux/Actions/productActions";
 
 const categories =[
   "Laptop",
@@ -20,8 +23,27 @@ export const NewProduct = () => {
   const [images,setImages] = useState([]);
   const [imagesPriview,setImagesPriview] = useState([]);
 
+  // console.log(name,price,description,category,stock,images);
+  const dispatch = useDispatch();
+
   const createProductSubmitHandler = (e) => {
      e.preventDefault();
+const myForm = {
+  name,price,description,category,stock,images
+}
+    //  const myForm = new FormData();
+
+    //  myForm.set("name",name);
+    //  myForm.set("price",price);
+    //  myForm.set("description",description);
+    //  myForm.set("category",category);
+    //  myForm.set("stock",stock);
+
+    //  images.forEach((image)=>{
+    //   myForm.append("images",image);
+    //  });
+
+     dispatch(createProduct(myForm));
   }
 
   const createProductImagesChange = (e) => {
@@ -47,7 +69,7 @@ export const NewProduct = () => {
     <div className="dashboard">
       <div className="content">
        <div className="newProductContainer">
-        <form action="" encType="multipart/form-data" onSubmit={createProductSubmitHandler}>
+        <form encType="multipart/form-data" onSubmit={createProductSubmitHandler}>
            <h1>Create New Product</h1>
             <div>
              <input 
@@ -118,7 +140,7 @@ export const NewProduct = () => {
               type="submit" 
               id="createProductBtn"
             >Create</button>
-            
+
         </form>
        </div>
       </div>
