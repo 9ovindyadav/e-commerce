@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Sidebar } from "./Dashboard";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import "../../sass/NewProduct.scss"
 import { createProduct } from "../../Redux/Actions/productActions";
+import { toast } from "react-hot-toast";
 
 const categories =[
   "Laptop",
@@ -23,7 +24,6 @@ export const NewProduct = () => {
   const [images,setImages] = useState([]);
   const [imagesPriview,setImagesPriview] = useState([]);
 
-  // console.log(name,price,description,category,stock,images);
   const dispatch = useDispatch();
 
   const createProductSubmitHandler = (e) => {
@@ -64,6 +64,20 @@ export const NewProduct = () => {
         reader.readAsDataURL(file);
        })
   }
+
+  const {message, error, loading} = useSelector((State)=>State.product)
+
+  useEffect(()=>{
+    if(message){
+      toast.success(message);
+      dispatch({type:"clearMessage"})
+    }
+    if(error){
+      toast.error(error);
+      dispatch({type:"clearError"})
+    }
+  },[loading,message,error])
+
   return (
     <div className="dashboard">
       <div className="content">

@@ -5,10 +5,10 @@ import {BiSearch, BiLogIn} from "react-icons/bi";
 import {FiMenu} from "react-icons/fi"
 import {AiOutlineClose} from "react-icons/ai"
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { logOut } from "../Redux/Actions/userActions";
-import { setCookie } from "../utils/cookie";
+import { removeCookie } from "../utils/cookie";
 
 
 export const Navbar = ({isAuthenticated = false, user}) => {
@@ -57,7 +57,7 @@ const logOutHandler = () => {
   dispatch(logOut());
   closeMenu();
   setShow(false);
-  setCookie("remove","");
+  removeCookie();
 }
 
   return (
@@ -85,7 +85,7 @@ const logOutHandler = () => {
                   <Link to={"/orders"} onClick={()=>setShow(false)}>Orders</Link>
                   <Link to={"/settings"} onClick={()=>setShow(false)}>Settings</Link>
                   {
-                    user.role === "admin" ? <Link to={"/admin/dashboard"} onClick={()=>setShow(false)}>Dashboard</Link> : null 
+                    user?.role === "admin" ? <Link to={"/admin/dashboard"} onClick={()=>setShow(false)}>Dashboard</Link> : null 
                   }
                   <Link onClick={logOutHandler}>Log out</Link>
               </div> : null 
@@ -121,7 +121,7 @@ const logOutHandler = () => {
                 <Link to={"/profile"}>Settings</Link>
             </div>
             {
-              user.role === "admin" ? <Link to={"/admin/dashboard"} onClick={closeMenu}>Dashboard</Link> : null
+              user?.role === "admin" ? <Link to={"/admin/dashboard"} onClick={closeMenu}>Dashboard</Link> : null
             }
             <Link onClick={closeMenu}>Cart <BsCart3/></Link>
             <Link onClick={logOutHandler}>Log out</Link>

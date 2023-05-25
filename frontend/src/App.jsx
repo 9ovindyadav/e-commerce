@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import {BrowserRouter, Routes, Route, useNavigate} from "react-router-dom"
 import { Home } from "./Pages/Home"
 import { Navbar } from "./Layout/Navbar"
 import { Footer } from "./Layout/Footer"
@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux"
 import {ProtectedRoute} from "protected-route-react"
 import { NewProduct } from "./Pages/Admin/NewProduct"
 import { Dashboard } from "./Pages/Admin/Dashboard"
+import { loadUser } from "./Redux/Actions/userActions"
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
   const {isAuthenticated,user,message,error,loading} = useSelector(State=>State.user);
 
   const dispatch = useDispatch();
+
   useEffect(()=>{
   
     if(error){
@@ -38,6 +40,9 @@ function App() {
     }
   },[dispatch,error,message]);
   
+useEffect(()=>{
+  dispatch(loadUser());
+},[]);
 
   return (
    <BrowserRouter>
@@ -46,10 +51,10 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/cloths" element={<Cloths/>}/>
           <Route path="/product/:id" element={<Product/>}/>
-          <Route path="/login" element={<ProtectedRoute isAuthenticated={!isAuthenticated} redirect="/profile">
+          <Route path="/login" element={<ProtectedRoute isAuthenticated={!isAuthenticated}>
                                            <Login/>
                                         </ProtectedRoute>}/>
-          <Route path="/register" element={<ProtectedRoute isAuthenticated={!isAuthenticated} redirect="/profile">
+          <Route path="/register" element={<ProtectedRoute isAuthenticated={!isAuthenticated}>
                                             <Register/>
                                           </ProtectedRoute>}/>
           <Route path="/forget-password" element={<ForgotPassword/>}/>
@@ -58,8 +63,12 @@ function App() {
                                             <Profile/>
                                           </ProtectedRoute>}/>
 
-          <Route path="/admin/dashboard" element={<Dashboard/>}/>                                
-          <Route path="/admin/product/create" element={<NewProduct/>}/>
+          <Route path="/admin/dashboard" element={<ProtectedRoute isAuthenticated={isAuthenticated}>
+                                                      <Dashboard/>
+                                                    </ProtectedRoute>}/>                                
+          <Route path="/admin/product/create" element={<ProtectedRoute isAuthenticated={isAuthenticated}>
+                                                      <NewProduct/>
+                                                    </ProtectedRoute>}/>
         </Routes>
         <Footer/>
         <Toaster/>

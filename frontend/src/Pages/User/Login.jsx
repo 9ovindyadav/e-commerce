@@ -2,7 +2,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom"
 import "../../sass/login.scss"
 import { useState } from "react";
 import {useDispatch} from "react-redux";
-import {login} from "../../Redux/Actions/userActions";
+import {loadUser, login} from "../../Redux/Actions/userActions";
 
 
 export const Login = () => {
@@ -13,9 +13,9 @@ export const Login = () => {
     const [password,setPassword] = useState("");
 
 const dispatch = useDispatch();
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-      dispatch(login(email,password));
+    await dispatch(login(email,password));
     }
   return (
 <div className="container">

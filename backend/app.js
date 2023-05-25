@@ -2,8 +2,6 @@ const express = require("express");
 const notFound = require("./middlewares/not-found");
 const errorHandlerMiddleware = require("./middlewares/error-handler");
 const connectDB = require("./db/connect");
-const bodyParser = require("body-parser");
-const formidable = require("express-formidable");
 const app = express();
 
 require("dotenv").config();

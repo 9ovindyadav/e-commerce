@@ -34,8 +34,7 @@ const userLogin = async (req,res) => {
     const token = user.createJWT() ;
     res.status(200).json({
         message: `Welcome back ${user.name}`,
-        token,
-        user
+        token
       })
 }
 
@@ -86,8 +85,8 @@ await user.save();
 }
 
 const getUser = async (req,res) => {
-    const user = await User.findById(req.user.userID).select("-password");
-    res.status(200).json({user});
+    const user = await User.findById(req.user._id).select("-password");
+    res.status(200).json({message:`Welcome ${user.name}`, user});
 }
 
 module.exports = {

@@ -18,6 +18,7 @@ export const createProduct = (myForm)=> async(dispatch)=>{
     })
 
     const data = await response.json();
+    console.log(data)
     if(data.message){
     dispatch({ type: "createProductSuccess", payload: data});
     }

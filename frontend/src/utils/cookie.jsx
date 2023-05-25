@@ -1,11 +1,8 @@
 import {Cookies} from "react-cookie";
 
-export const setCookie = (name,value) => {
-    const cookies = new Cookies();
+const cookies = new Cookies();
 
-    if(name === "remove"){
-        cookies.set("token",value,{path: "/"});
-    }
+export const setCookie = (name,value) => {
 
     const expireDate = new Date();
     expireDate.setDate(expireDate.getDate()+1);
@@ -14,7 +11,12 @@ export const setCookie = (name,value) => {
 }
 
 export const getCookie = () => {
-    const cookies = new Cookies();
 
+    
     return cookies.getAll().token ;
+}
+
+export const removeCookie = () => {
+
+    cookies.remove("token");
 }

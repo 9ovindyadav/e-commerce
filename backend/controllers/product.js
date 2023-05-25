@@ -1,34 +1,32 @@
 const Product = require("../models/product");
-const cloudinary = require("cloudinary");
+const cloudinary = require("../utils/cloudinary");
 
 const createProduct = async (req,res) => {
-
-    const images = [] ;
-    if(typeof req.body.images === "string"){
-        images.push(req.body.images)
-    }else{
-        images = req.body.images ;
-    }
+    
+    let Images = req.body.images ;
 
     const imagesLinks = [] ;
+    if(Array.isArray(Images)){
+        for(let i=0; i < Images.length ; i++){
 
-    for(let i=0; i < images.length; i++){
-        const result = await cloudinary.v2.uploader.upload(images[i],{
-            folder:"products"
-        });
-        imagesLinks.push({
-            public_id: result.public_id,
-            url: result.secure_url
-        });
+            const result = await cloudinary.uploader.upload(Images[i],{
+                folder:"products"
+            });
+            imagesLinks.push({
+                public_id: result.public_id,
+                url: result.secure_url
+            });
+
+        }
     }
 
-    console.log(result);
+    
     req.body.images = imagesLinks ;
     req.body.createdBy = req.user._id ;
 
     const product = await Product.create(req.body);
 
-    res.status(200).json({message:"Product created",product});
+    res.status(200).json({message:"Product Added Successfully",product});
 }
 
 module.exports = {

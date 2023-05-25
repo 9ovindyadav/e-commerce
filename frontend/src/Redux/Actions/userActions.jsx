@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
-import { setCookie } from "../../utils/cookie";
+import { setCookie ,getCookie} from "../../utils/cookie";
 import { server } from "../Store";
+
+const token = getCookie();
 
 export const login = (email,password)=> async(dispatch)=>{
 
@@ -18,6 +19,7 @@ export const login = (email,password)=> async(dispatch)=>{
         })
     
         const data = await response.json();
+        console.log(data);
         if(data.message){
         dispatch({ type: "loginSuccess", payload: data});
         setCookie("token",data.token);
@@ -101,6 +103,29 @@ export const resetPassword = (password,token)=> async(dispatch)=>{
   }
   if(data.msg){
     dispatch({ type: "resetPasswordFail", payload: data.msg});
+  }
+};
+
+
+export const loadUser = ()=> async(dispatch)=>{
+
+  dispatch({type:"loadUserRequest"});
+
+  const url = `${server}/user` ;
+          const response = await fetch(url,{
+            method:"GET",
+            headers:{
+                "Authorization": token
+            }
+          })
+
+          const data = await response.json();
+  console.log(data);
+  if(data.message){
+  dispatch({ type: "loadUserSuccess", payload: data});
+  }
+  if(data.msg){
+    dispatch({ type: "loadUserFail", payload: data.msg});
   }
 };
 
