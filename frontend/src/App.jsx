@@ -16,6 +16,7 @@ import {ProtectedRoute} from "protected-route-react"
 import { NewProduct } from "./Pages/Admin/NewProduct"
 import { Dashboard } from "./Pages/Admin/Dashboard"
 import { loadUser } from "./Redux/Actions/userActions"
+import { AllProducts } from "./Pages/Admin/AllProducts"
 
 function App() {
 
@@ -68,6 +69,10 @@ function App() {
                                                     </ProtectedRoute>}/>                                
           <Route path="/admin/product/create" element={<ProtectedRoute isAuthenticated={isAuthenticated}>
                                                       <NewProduct/>
+                                                    </ProtectedRoute>}/>
+
+          <Route path="/admin/products" element={<ProtectedRoute isAuthenticated={isAuthenticated}>
+                                                      <AllProducts/>
                                                     </ProtectedRoute>}/>
         </Routes>
         <Footer/>

@@ -17,7 +17,7 @@ export const Sidebar = () => {
     <div className="sidebar">
         <Link to={"/admin/dashboard"}><p>Dashboard</p></Link>
         <Link to={"/admin/product/create"}><p>Orders</p></Link>
-        <Link to={"/admin/product/create"}><p>Products</p></Link>
+        <Link to={"/admin/products"}><p>Products</p></Link>
         <Link to={"/admin/product/create"}><p>Create Product</p></Link>
         <Link to={"/admin/product/create"}><p>Users</p></Link>
         <Link to={"/admin/product/create"}><p>Reviews</p></Link>
