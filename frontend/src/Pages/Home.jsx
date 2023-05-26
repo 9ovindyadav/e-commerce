@@ -2,6 +2,9 @@ import { Link } from "react-router-dom"
 import "../sass/home.scss"
 import { ProductCard } from "./Products/Product-card"
 import {products} from "../../products.jsx"
+import { useDispatch } from "react-redux"
+import { loadUser } from "../Redux/Actions/userActions"
+import { useEffect } from "react"
 
 const category = [
 {
@@ -25,7 +28,7 @@ const category = [
 
 
 export const Home = () => {
-
+  
   return (
     <main>
       <section>

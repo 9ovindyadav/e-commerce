@@ -39,6 +39,10 @@ function App() {
       dispatch({type:"clearMessage"});
     }
   },[dispatch,error,message]);
+  
+  useEffect(()=>{
+    dispatch(loadUser());
+  },[])
 
   return (
    <BrowserRouter>
@@ -47,14 +51,14 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/cloths" element={<Cloths/>}/>
           <Route path="/product/:id" element={<Product/>}/>
-          <Route path="/login" element={<ProtectedRoute isAuthenticated={!isAuthenticated}>
-                                           <Login/>
+          <Route path="/login" element={<ProtectedRoute isAuthenticated={!isAuthenticated} redirect="/">
+                                          <Login/>
                                         </ProtectedRoute>}/>
-          <Route path="/register" element={<ProtectedRoute isAuthenticated={!isAuthenticated}>
-                                            <Register/>
-                                          </ProtectedRoute>}/>
+                                                                        
+          <Route path="/register" element={<Register/>}/>
           <Route path="/forget-password" element={<ForgotPassword/>}/>
           <Route path="/reset-password/:token" element={<ResetPassword/>}/>
+
           <Route path="/profile" element={<ProtectedRoute isAuthenticated={isAuthenticated}>
                                             <Profile/>
                                           </ProtectedRoute>}/>

@@ -7,15 +7,16 @@ import {loadUser, login} from "../../Redux/Actions/userActions";
 
 export const Login = () => {
 
-  const navigate = useNavigate();
 
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
 const dispatch = useDispatch();
+
     const submitHandler = async (e) => {
         e.preventDefault();
-    await dispatch(login(email,password));
+       await dispatch(login(email,password));
+       await dispatch(loadUser());
     }
   return (
 <div className="container">

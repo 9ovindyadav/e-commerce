@@ -1,7 +1,6 @@
 import { setCookie ,getCookie} from "../../utils/cookie";
 import { server } from "../Store";
 
-const token = getCookie();
 
 export const login = (email,password)=> async(dispatch)=>{
 
@@ -110,7 +109,7 @@ export const resetPassword = (password,token)=> async(dispatch)=>{
 export const loadUser = ()=> async(dispatch)=>{
 
   dispatch({type:"loadUserRequest"});
-
+  const token = getCookie();
   const url = `${server}/user` ;
           const response = await fetch(url,{
             method:"GET",
