@@ -39,10 +39,6 @@ function App() {
       dispatch({type:"clearMessage"});
     }
   },[dispatch,error,message]);
-  
-useEffect(()=>{
-  dispatch(loadUser());
-},[]);
 
   return (
    <BrowserRouter>
