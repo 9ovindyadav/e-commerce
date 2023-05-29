@@ -1,8 +1,18 @@
 import { ProductCard } from "./Product-card"
-import {products} from "../../../products.jsx"
+// import {products} from "../../../products.jsx"
 import "../../sass/cloths.scss"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getAllProducts } from "../../Redux/Actions/productActions"
 
 export const Cloths = () => {
+
+  const {products, nHits} = useSelector(State => State.product)
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(getAllProducts());
+  },[])
   return (
     <div className="cloths">
         <div className="filter-bar">
@@ -11,15 +21,15 @@ export const Cloths = () => {
         </div>
         <div className="product-col">
         {
-          products.map(({ProID,ProImg,ProName,ProPrice,ProDesc,ProRating,ProReviews})=>(
+          products?.map(({_id,image,name,price,description,ratings,reviews})=>(
             
           
-            <ProductCard key={ProID} ProID={ProID} ProImg={ProImg} 
-                     ProName={ProName} 
-                     ProPrice={ProPrice} 
-                     ProDesc={ProDesc} 
-                     ProRating={ProRating} 
-                     ProReviews={ProReviews} />
+            <ProductCard key={_id} ProID={_id} ProImg={image} 
+                     ProName={name} 
+                     ProPrice={price} 
+                     ProDesc={description} 
+                     ProRating={ratings} 
+                     ProReviews={reviews} />
       
           ))
         }

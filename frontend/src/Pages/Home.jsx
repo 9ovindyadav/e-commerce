@@ -1,34 +1,20 @@
 import { Link } from "react-router-dom"
 import "../sass/home.scss"
 import { ProductCard } from "./Products/Product-card"
-import {products} from "../../products.jsx"
-import { useDispatch } from "react-redux"
-import { loadUser } from "../Redux/Actions/userActions"
+import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-
-const category = [
-{
-  title:"Sport's wear",
-  path: "/sale"
-},
-{
-  title:"Sport's wear",
-  path: "/sale"
-},
-{
-  title:"Sport's wear",
-  path: "/sale"
-},
-{
-  title:"Sport's wear",
-  path: "/sale"
-}
-]
-
-
+import { getAllProducts } from "../Redux/Actions/productActions"
+import {category} from "../../category.json";
 
 export const Home = () => {
   
+  const {products} = useSelector(State => State.product);
+
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(getAllProducts());
+  },[])
   return (
     <main>
       <section>
@@ -60,15 +46,15 @@ export const Home = () => {
       <h1>Today's best deal for you</h1>
       <div className="roller">
         {
-          products.map(({ProID,ProImg,ProName,ProPrice,ProDesc,ProRating,ProReviews})=>(
+          products?.map(({_id,images,name,price,description,ratings,reviews})=>(
             
           
-            <ProductCard key={ProID} ProID={ProID} ProImg={ProImg} 
-                     ProName={ProName} 
-                     ProPrice={ProPrice} 
-                     ProDesc={ProDesc} 
-                     ProRating={ProRating} 
-                     ProReviews={ProReviews} />
+            <ProductCard key={_id} ProID={_id} ProImg={images} 
+                     ProName={name} 
+                     ProPrice={price} 
+                     ProDesc={description} 
+                     ProRating={ratings} 
+                     ProReviews={reviews} />
       
           ))
         }

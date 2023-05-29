@@ -26,3 +26,20 @@ export const createProduct = (myForm)=> async(dispatch)=>{
       dispatch({ type: "createProductFail", payload: data.msg});
     }
 };
+
+export const getAllProducts = (query)=> async(dispatch)=>{
+
+  dispatch({type:"getProductsRequest"});
+
+  const url = `${server}/product?`
+  const response = await fetch(url);
+
+  const data = await response.json();
+  console.log(data)
+  if(data.products){
+  dispatch({ type: "getProductsSuccess", payload: data});
+  }
+  if(data.msg){
+    dispatch({ type: "getProductsFail", payload: data.msg});
+  }
+};
