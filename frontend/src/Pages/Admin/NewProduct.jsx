@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Sidebar } from "./Dashboard";
 import {useDispatch, useSelector} from "react-redux";
-import "../../sass/NewProduct.scss"
+import "../../sass/newProduct.scss"
 import { createProduct } from "../../Redux/Actions/productActions";
 import { toast } from "react-hot-toast";
 

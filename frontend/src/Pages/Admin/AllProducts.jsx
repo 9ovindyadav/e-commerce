@@ -1,5 +1,5 @@
 import { Sidebar } from "./Dashboard"
-import "../../sass/adminAllProducts.scss"
+import "../../sass/adminAllproducts.scss"
 import {products} from "../../../products.jsx";
 
 export const AllProducts = () => {
