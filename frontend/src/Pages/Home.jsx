@@ -4,7 +4,7 @@ import { ProductCard } from "./Products/Product-card"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { getAllProducts } from "../Redux/Actions/productActions"
-import {category} from "../../category.json";
+import category from "../../category.json";
 
 export const Home = () => {
   
