@@ -27,11 +27,13 @@ export const createProduct = (myForm)=> async(dispatch)=>{
     }
 };
 
-export const getAllProducts = (query)=> async(dispatch)=>{
-
+export const getAllProducts = (filterObj)=> async(dispatch)=>{
+  const {price} = filterObj ;
   dispatch({type:"getProductsRequest"});
-
-  const url = `${server}/product?`
+  let url = `${server}/product?`
+  if(price){
+    url = `${server}/product?numericFilters=price<${price}`
+  }
   const response = await fetch(url);
 
   const data = await response.json();

@@ -1,15 +1,58 @@
 .cloths{
     display: flex;
     align-items: start;
-    margin: 2em 0;
+    margin: 1em 0;
 }
 
 .filter-bar{
     width: 20%;
     position: sticky;
     height: 80vh;
-    top: 7em;
+    top: 4em;
     background-color: pink;
+    padding: 1em;
+    box-sizing: border-box;
+
+   .heading{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    button{
+        padding: 0.2em 1em;
+    }
+    h1{
+        color: grey;
+        font-size: 1.3em;
+    }
+   }
+
+  
+   .condition{
+    background-color: white;
+    padding: 0.3em 1em;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+
+    .title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    p{
+        color: grey;
+    }
+    svg{
+        font-size: 2em;
+        color: grey;
+    }
+    .panel{
+
+        input{
+            margin: 0.4em 1em;
+        }
+    }
+   }
     
 }
 
