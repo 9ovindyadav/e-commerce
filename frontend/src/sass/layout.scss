@@ -104,15 +104,49 @@ nav{
 
 footer{
     background-color: var(--bg-input);
+    .creator{
+        background-color: #3e3d3d;
+        padding: 1em;
+        color: white;
+        display: flex;
+        justify-content: center;
+        h4{
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+        a{
+            font-size: 1.2em;
+            font-weight: 500;
+            color: white;   
+            margin: 0 0.5em;
+        }
+        a:hover{
+            text-decoration: underline rgb(224, 224, 234);
+        }
+    }
     .brand{
-        width: 30%;
         padding: 2em;
-
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @media (max-width:900px) {
+            flex-direction: column;
+            gap: 1em;
+        }
+        .logo{
+            img{
+                width: 4em;
+            }
+            span{
+                font-size: 2em;
+            }
+        }
         p{
             margin: 1em 0;
+            text-align:center;    
         }
         .payments{
-    
+            
             svg{
                 font-size: 2em;
                 margin: 10px;
